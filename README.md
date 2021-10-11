@@ -2,7 +2,7 @@
 
 This Git repository contains software artifacts to deploy [Crossplane](https://crossplane.io/) server and [Argo CD](https://argoproj.github.io/argo-cd/) to an Amazon EKS cluster. Please refer to this accompanying blog post for details about how this works.
 
-<img class="wp-image-1960 size-full" src="images/Deployment-Architecture.png" alt="Deployment architecture" width="854" height="527" />
+<img class="wp-image-1960 size-full" src="images/Deployment-Architecture.png" alt="Deployment architecture"/>
 
 ### Solution overview
 
@@ -19,7 +19,7 @@ The goal is to manage all of these tasks in a declarative style based on the [Gi
 
 The script [crossplane.sh](https://github.com/aws-samples/eks-gitops-crossplane-argocd/blob/main/crossplane.sh) outlined the CLI commands used in this implementation to install Crossplane and provision an Amazon EKS cluster. The implementation in this repo uses Crossplane's [Composition](https://crossplane.io/docs/v1.4/concepts/composition.html)  and [CompositeResourceDefinition](https://crossplane.io/docs/v1.4/concepts/composition.html) to create a Crossplane Configuration package that will provision the complete infrastructure for setting up an Amazon EKS cluster - VPC, subnets, internet gateway, NAT gateways, route tables, and the EKS cluster with a managed node group. The figure below shows the relationship between various Crossplane custom resources used in this Configuration package.
 
-<img class="wp-image-1960 size-full" src="images/Component-Relationship.png" alt="Component Relationship" width="854" height="527" />
+<img class="wp-image-1960 size-full" src="images/Component-Relationship.png" alt="Component Relationship"/>
 
 ## Security
 
