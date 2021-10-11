@@ -9,7 +9,7 @@ metadata:
 spec:
   description: Project for deploying Crossplane with ArgoCD
   sourceRepos:
-  - git@github.com:vijayansarathy/eks-gitops-crossplane-argocd.git
+  - git@github.com:aws-samples/eks-gitops-crossplane-argocd.git
 
   #
   # List of namespaces/clusters to which Applications in this project can be deployed into
