@@ -23,7 +23,7 @@ The script [crossplane.sh](https://github.com/aws-samples/eks-gitops-crossplane-
 <img class="wp-image-1960 size-full" src="images/Component-Relationship.png" alt="Component Relationship"/>
 
 #### Declarative approach
-The script [argocd.sh]((https://github.com/aws-samples/eks-gitops-crossplane-argocd/blob/main/argocd.sh) outlines the steps involved in installing Argo CD on the cluster and then leveraging the GitOps workflow in Argo CD to manage both cluster provisioning with Crossplane as well as remote cluster management. 
+The script [argocd.sh](https://github.com/aws-samples/eks-gitops-crossplane-argocd/blob/main/argocd.sh) outlines the steps involved in installing Argo CD on the management EKS cluster and then leveraging the GitOps workflow in Argo CD to manage both provisioning and management of a remote workload cluster.
 
 ## Security
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
