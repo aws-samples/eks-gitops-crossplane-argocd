@@ -15,7 +15,7 @@ Here’s the high level overview of the solution architecture.
 
 The goal is to manage all of these tasks in a declarative style based on the [GitOps](https://www.weave.works/blog/what-is-gitops-really) approach.
 
-### Deployment
+### Deployment overview
 
 #### Imperative approach
 The script [crossplane.sh](https://github.com/aws-samples/eks-gitops-crossplane-argocd/blob/main/crossplane.sh) outlines the CLI commands used in this implementation to install Crossplane and provision an Amazon EKS cluster. The implementation in this repo uses Crossplane's [Composition](https://crossplane.io/docs/v1.4/concepts/composition.html)  and [CompositeResourceDefinition](https://crossplane.io/docs/v1.4/concepts/composition.html) to create a Crossplane [Configuration package](https://crossplane.io/docs/v1.4/concepts/packages.html#configuration-packages) that will provision the complete infrastructure for setting up an Amazon EKS cluster - VPC, subnets, internet gateway, NAT gateways, route tables, and the EKS cluster with a managed node group. The figure below shows the relationship between various Crossplane custom resources used in this Configuration package and the set of AWS managed resources that they provision.
