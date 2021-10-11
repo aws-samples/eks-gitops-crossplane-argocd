@@ -1,6 +1,6 @@
 ## Amazon EKS cluser management with Crossplane and Argo CD
 
-This Git repository contains software artifacts to deploy [Crossplane](https://crossplane.io/) server and [Argo CD](https://argoproj.github.io/argo-cd/) to an Amazon EKS cluster.
+This Git repository contains software artifacts to deploy [Crossplane](https://crossplane.io/) server and [Argo CD](https://argoproj.github.io/argo-cd/) to an Amazon EKS cluster. Please refer to this accompanying blog post for details about how this works.
 
 <img class="wp-image-1960 size-full" src="images/Deployment-Architecture.png" alt="Deployment architecture" width="854" height="527" />
 
