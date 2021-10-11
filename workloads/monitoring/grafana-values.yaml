@@ -1,0 +1,9 @@
+
+#
+# Parameter overrides for Grafana chart
+#                
+grafana:
+    nameOverride: grafana
+    serviceAccount:
+        create: true
+        name: grafana-service-account

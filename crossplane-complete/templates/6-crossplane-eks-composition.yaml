@@ -1,0 +1,32 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: crossplane-eks-composition
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"   
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  ignoreCrossplaneConstraints: false
+  package: public.ecr.aws/awsvijisarathy/crossplane-eks-composition:3.0.11
+  packagePullPolicy: IfNotPresent
+  revisionActivationPolicy: Automatic
+  revisionHistoryLimit: 0
+  skipDependencyResolution: false
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: post-configuration
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "200"
+spec:
+  template:
+    spec:
+      containers:
+        - name: page-down
+          image: alpine:latest
+          command: ["sleep", "20"]
+      restartPolicy: Never

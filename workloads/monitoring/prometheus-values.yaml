@@ -1,0 +1,23 @@
+#
+# Parameter overrides for Prometheus chart
+#
+prometheus:
+    kubeStateMetrics:
+        enabled: false
+
+    nameOverride: prometheus
+    serviceAccounts:
+        server:
+            create: true
+            name: "prometheus-service-account"
+    nodeExporter:
+        enabled: true
+    alertmanager:   
+        enabled: false
+    pushgateway:
+        enabled: false
+    server:
+        statefulSet:
+            enabled: false
+        persistentVolume:   
+            enabled: true

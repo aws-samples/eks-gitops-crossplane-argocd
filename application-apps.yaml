@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: workload-apps 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io  
+spec:
+  project: applications-project
+  source:
+    repoURL: git@github.com:vijayansarathy/crossplane-gitops.git
+    targetRevision: HEAD
+    path: workload-apps
+    helm:
+      values: |
+        spec:
+          destination:
+            server: https://02CC04B7C7EB7AC1003799C1D5FB932B.gr7.us-west-2.eks.amazonaws.com          
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true    

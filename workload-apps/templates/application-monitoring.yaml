@@ -1,0 +1,33 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: workloads-project
+  source:
+    repoURL: git@github.com:vijayansarathy/crossplane-gitops.git
+    targetRevision: HEAD
+    path: workloads/monitoring
+    helm:
+      releaseName: observability     
+      valueFiles:
+      - grafana-values.yaml   
+      - prometheus-values.yaml   
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true    
+    syncOptions:
+    - CreateNamespace=true
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m      

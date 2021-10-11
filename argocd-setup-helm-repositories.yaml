@@ -1,0 +1,43 @@
+#
+# Helm Repositories
+# Non standard Helm Chart repositories have to be registered
+# Each repository must have 'url', 'type' and 'name' fields
+#
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prometheus-helm-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: prometheus-argocd
+  url: https://prometheus-community.github.io/helm-charts
+  type: helm
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-helm-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: grafana-argocd
+  url: https://grafana.github.io/helm-charts      
+  type: helm
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: crossplane-helm-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: crossplane-argocd
+  url: https://charts.crossplane.io/stable
+  type: helm    

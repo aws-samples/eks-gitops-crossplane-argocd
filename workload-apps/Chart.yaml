@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bootstrap-apps-argo
+description: A Helm chart based on the App of Apps pattern to bootstrap a cluster with ArgoCD
+type: application
+version: 1.0.0
+appVersion: 1.0.0

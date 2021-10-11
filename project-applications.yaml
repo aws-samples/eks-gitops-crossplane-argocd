@@ -1,0 +1,33 @@
+#
+# When using the app of apps deployment pattern for bootstrapping a cluster with a set of applications,
+# a top-level parent Application resource is created, typically as a Helm chart.
+# This chart comprises a set of templates, each of which is a child Application.
+# The ArgoCD Application Controller responds only to Application resources deployed to the 'argocd' namespace.
+# The 'applications-project' AppProject allows a non-admin user to deploy only Application resources in the 'argocd' namespace.
+# Its counterpart 'workloads-project' is used for actual workloads whch allows the user to deploy other resources such as Deployment, DaemonSet etc.
+#
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: applications-project
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for parent applicatons used when employing app of apps pattern
+  sourceRepos:
+  - git@github.com:vijayansarathy/crossplane-gitops.git
+
+  #
+  # Allow this project to deploy only to 'argocd' namespace
+  #
+  destinations:
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  #
+  # Deny all namespace-scoped resources from being created, except for Application
+  #
+  namespaceResourceWhitelist:
+  - group: 'argoproj.io'
+    kind: Application

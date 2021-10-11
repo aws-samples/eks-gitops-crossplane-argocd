@@ -1,0 +1,61 @@
+---  
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-reader
+  namespace: nodejs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: s3-reader
+      role: web-service
+  template:
+    metadata:
+      labels:
+        app: s3-reader
+        role: web-service
+      annotations:
+        prometheus.io/scrape: 'false'     
+    spec: 
+      containers:          
+        - name: node  
+          image: public.ecr.aws/awsvijisarathy/k8s-nodeapp:latest
+          imagePullPolicy: Always   
+          resources:
+            requests:
+              cpu: "128m"
+              memory: "128Mi"
+          livenessProbe:
+            httpGet: 
+              path: /live
+              port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 10
+            failureThreshold: 3            
+          readinessProbe:
+            httpGet: 
+              path: /live
+              port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 10
+            failureThreshold: 3        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s3reader-svc
+  namespace: nodejs
+spec:
+  sessionAffinity: None
+  type: ClusterIP  
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: s3-reader
+    role: web-service    
+

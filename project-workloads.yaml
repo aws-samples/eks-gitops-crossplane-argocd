@@ -1,0 +1,67 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads-project
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for deploying Crossplane with ArgoCD
+  sourceRepos:
+  - git@github.com:vijayansarathy/crossplane-gitops.git
+
+  #
+  # List of namespaces/clusters to which Applications in this project can be deployed into
+  #
+  destinations:
+  - namespace: crossplane-system
+    server: https://kubernetes.default.svc   
+  - namespace: kube-system
+    server: https://kubernetes.default.svc   
+  - namespace: sealed-secrets
+    server: https://kubernetes.default.svc  
+  - namespace: eks
+    server: https://kubernetes.default.svc      
+  - namespace: nodejs
+    server: https://02CC04B7C7EB7AC1003799C1D5FB932B.gr7.us-west-2.eks.amazonaws.com
+  - namespace: monitoring
+    server: https://02CC04B7C7EB7AC1003799C1D5FB932B.gr7.us-west-2.eks.amazonaws.com
+  #
+  # Deny all cluster-scoped resources from being created, except for the ones listed
+  #
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: 'rbac.authorization.k8s.io'
+    kind: ClusterRole
+  - group: 'rbac.authorization.k8s.io'
+    kind: ClusterRoleBinding    
+  - group: 'policy'
+    kind: PodSecurityPolicy     
+  - group: 'apiextensions.k8s.io'
+    kind: CustomResourceDefinition
+  - group: 'pkg.crossplane.io'
+    kind: Configuration    
+  - group: 'pkg.crossplane.io'
+    kind: Lock   
+  - group: 'pkg.crossplane.io'
+    kind: Provider        
+  - group: 'aws.crossplane.io'
+    kind: ProviderConfig     
+  - group: 'eks.sarathy.io'
+    kind: EKSCluster      
+  - group: 'eks.aws.crossplane.io'
+    kind: NodeGroup
+  - group: 'eks.aws.crossplane.io'
+    kind: Cluster    
+  #
+  # Allow all namespace-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  #
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
