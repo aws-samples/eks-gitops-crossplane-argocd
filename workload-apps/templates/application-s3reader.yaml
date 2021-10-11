@@ -9,7 +9,7 @@ metadata:
 spec:
   project: workloads-project
   source:
-    repoURL: git@github.com:vijayansarathy/crossplane-gitops.git
+    repoURL: git@github.com:aws-samples/eks-gitops-crossplane-argocd.git
     targetRevision: HEAD
     path: workloads/s3reader
   destination:
