@@ -10,12 +10,13 @@ Here’s the high level overview of the solution architecture.
 
 <ul>
   <li>
-    Start off with an Amazon EKS cluster that was created using any one of the [approaches outlined here](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).  </li>
-  <li>
-    Install Argo CD on this cluster to manage all deployment tasks and point it to a Git repository containing the deployment artifacts.   
+    Start off with an Amazon EKS cluster that was created using any one of the [approaches outlined here](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
   </li>
   <li>
-    Deploy Crossplane components that are needed to manage the lifecycle of AWS managed service resources.  
+    Install Argo CD on this cluster to manage all deployment tasks and point it to a Git repository containing the deployment artifacts
+  </li>
+  <li>
+    Deploy Crossplane components that are needed to manage the lifecycle of AWS managed service resources  
   </li>  
   <li>
     Deploy Crossplane-specific custom resources to provision an Amazon EKS cluster  
