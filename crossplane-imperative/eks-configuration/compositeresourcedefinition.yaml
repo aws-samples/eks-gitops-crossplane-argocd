@@ -12,6 +12,7 @@ spec:
     - cluster-ca
     - apiserver-endpoint
     - kubeconfig
+    - value
   versions:
   - name: v1beta1
     served: true

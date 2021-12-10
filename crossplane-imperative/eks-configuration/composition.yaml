@@ -462,6 +462,8 @@ spec:
           fromConnectionSecretKey: clusterCA
         - name: apiserver-endpoint
           fromConnectionSecretKey: endpoint
+        - name: value
+          fromConnectionSecretKey: kubeconfig
         - fromConnectionSecretKey: kubeconfig          
 
     - name: eks-nodegroup
