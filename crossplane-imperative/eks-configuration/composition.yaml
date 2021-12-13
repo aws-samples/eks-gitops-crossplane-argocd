@@ -464,7 +464,6 @@ spec:
           fromConnectionSecretKey: endpoint
         - name: value
           fromConnectionSecretKey: kubeconfig
-        - fromConnectionSecretKey: kubeconfig          
 
     - name: eks-nodegroup
       base:
