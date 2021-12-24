@@ -437,7 +437,6 @@ spec:
         kind: Cluster
         spec:
           forProvider:
-            roleArn: arn:aws:iam::937351930975:role/EKS-Cluster-Role
             resourcesVpcConfig:
               endpointPrivateAccess: false
               endpointPublicAccess: true
@@ -457,6 +456,8 @@ spec:
             - type: string
               string:
                 fmt: "%s-ekscluster-connection"            
+        - fromFieldPath: "spec.parameters.cluster-role"
+          toFieldPath: "spec.forProvider.roleArn"            
       connectionDetails:
         - name: cluster-ca
           fromConnectionSecretKey: clusterCA
@@ -472,8 +473,7 @@ spec:
         spec:
           forProvider:
             instanceTypes: 
-              - m5.large
-            nodeRole: arn:aws:iam::937351930975:role/EKS-WorkerNode-Role
+              - m5.large            
             scalingConfig:
               minSize: 1
             subnetSelector:
@@ -496,3 +496,5 @@ spec:
             map:
               gpu: AL2_x86_64_GPU
               non-gpu: AL2_x86_64        
+        - fromFieldPath: "spec.parameters.workernode-role"
+          toFieldPath: "spec.forProvider.nodeRole"               

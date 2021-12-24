@@ -78,6 +78,13 @@ spec:
                     description: AZ for private subnet 2
                     type: string  
 
+                  cluster-role:
+                    description: EKS cluster role
+                    type: string     
+                  workernode-role:
+                    description: EKS worker node role
+                    type: string                                       
+
                   k8s-version:
                     description: Kubernetes version
                     type: string
