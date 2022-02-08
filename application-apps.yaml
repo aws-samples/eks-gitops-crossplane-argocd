@@ -16,7 +16,7 @@ spec:
       values: |
         spec:
           destination:
-            server: https://02CC04B7C7EB7AC1003799C1D5FB932B.gr7.us-west-2.eks.amazonaws.com          
+            server: https://D61A5789E895B3B38F6626E00F74FEC8.gr7.us-west-2.eks.amazonaws.com       
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
