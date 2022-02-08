@@ -4,7 +4,7 @@
 # This chart comprises a set of templates, each of which is a child Application.
 # The ArgoCD Application Controller responds only to Application resources deployed to the 'argocd' namespace.
 # The 'applications-project' AppProject allows a non-admin user to deploy only Application resources in the 'argocd' namespace.
-# Its counterpart 'workloads-project' is used for actual workloads whch allows the user to deploy other resources such as Deployment, DaemonSet etc.
+# Its counterpart 'workloads-project' is used for actual workloads which allows the user to deploy other resources such as Deployment, DaemonSet etc.
 #
 ---
 apiVersion: argoproj.io/v1alpha1

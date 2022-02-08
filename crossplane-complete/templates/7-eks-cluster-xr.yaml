@@ -3,6 +3,8 @@ apiVersion: eks.sarathy.io/v1beta1
 kind: EKSCluster
 metadata:
   name: crossplane-argocd-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "500"   
 spec:
   parameters:
     region: us-west-2

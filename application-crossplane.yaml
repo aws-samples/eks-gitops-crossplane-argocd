@@ -1,3 +1,7 @@
+#
+# ArgoCD App of Apps used to deploy all Crossplane related resources to the management ckuster.
+# This includes the Crossplane core controller, AWS provider for Crossplane, Configuration package containing Composition, CompositeResourceDefinition and CompositeResource.
+#
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
