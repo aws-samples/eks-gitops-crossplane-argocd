@@ -2,7 +2,7 @@
 apiVersion: eks.sarathy.io/v1beta1
 kind: EKSCluster
 metadata:
-  name: crossplane-argocd-cluster
+  name: crossplane-cluster
 spec:
   parameters:
     region: us-west-2
