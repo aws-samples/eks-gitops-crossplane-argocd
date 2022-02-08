@@ -115,6 +115,8 @@ spec:
                   - subnet2-private-availabilityZone    
                   - k8s-version
                   - workers-size
-                  - workload-type              
+                  - workload-type   
+                  - cluster-role     
+                  - workernode-role      
             required:
               - parameters
