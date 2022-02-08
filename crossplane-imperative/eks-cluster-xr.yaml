@@ -2,33 +2,33 @@
 apiVersion: eks.sarathy.io/v1beta1
 kind: EKSCluster
 metadata:
-  name: crossplane-prod-cluster
+  name: crossplane-argocd-cluster
 spec:
   parameters:
     region: us-west-2
-    vpc-name: "crossplane-vpc-only"
-    vpc-cidrBlock: "10.20.0.0/16"
+    vpc-name: "EKS-CROSSPLANE-VPC"
+    vpc-cidrBlock: "192.168.48.0/20"
 
-    subnet1-public-name: "public-worker-1 "
-    subnet1-public-cidrBlock: "10.20.1.0/28"
+    subnet1-public-name: "PUBLIC-WORKER-1"
+    subnet1-public-cidrBlock: "192.168.48.0/24"
     subnet1-public-availabilityZone: "us-west-2a"
     
-    subnet2-public-name: "public-worker-2"
-    subnet2-public-cidrBlock: "10.20.2.0/28"
+    subnet2-public-name: "PUBLIC-WORKER-2"
+    subnet2-public-cidrBlock: "192.168.49.0/24"
     subnet2-public-availabilityZone: "us-west-2b"    
 
-    subnet1-private-name: "private-worker-1 "
-    subnet1-private-cidrBlock: "10.20.11.0/28"
+    subnet1-private-name: "PRIVATE-WORKER-1"
+    subnet1-private-cidrBlock: "192.168.50.0/24"
     subnet1-private-availabilityZone: "us-west-2a"
     
-    subnet2-private-name: "private-worker-2"
-    subnet2-private-cidrBlock: "10.20.12.0/28"
+    subnet2-private-name: "PRIVATE-WORKER-2"
+    subnet2-private-cidrBlock: "192.168.51.0/24"
     subnet2-private-availabilityZone: "us-west-2b"     
 
-    cluster-role: arn:aws:iam::937351930975:role/EKS-Cluster-Role
-    workernode-role: arn:aws:iam::937351930975:role/EKS-WorkerNode-Role
+    cluster-role: arn:aws:iam::XXXX:role/EKS-Cluster-Role
+    workernode-role: arn:aws:iam::XXXX:role/EKS-WorkerNode-Role
 
-    k8s-version: "1.20"
+    k8s-version: "1.21"
     workload-type: "non-gpu"
     workers-size: 2
 
@@ -37,4 +37,4 @@ spec:
 
   writeConnectionSecretToRef:
     namespace: eks
-    name: crossplane-prod-cluster-connection
+    name: crossplane-cluster-connection
