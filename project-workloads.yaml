@@ -23,10 +23,6 @@ spec:
     server: https://kubernetes.default.svc  
   - namespace: eks
     server: https://kubernetes.default.svc      
-  - namespace: nodejs
-    server: https://kubernetes.default.svc      
-  - namespace: monitoring
-    server: https://kubernetes.default.svc      
   #
   # Deny all cluster-scoped resources from being created, except for the ones listed
   #

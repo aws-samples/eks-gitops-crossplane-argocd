@@ -4,6 +4,7 @@
 # The Crossplane CLI extends kubectl with functionality to build, push, and install Crossplane packages
 #
 curl -sL https://raw.githubusercontent.com/crossplane/crossplane/release-1.0/install.sh | sh
+curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
 sudo mv kubectl-crossplane /usr/local/bin
 
 #
