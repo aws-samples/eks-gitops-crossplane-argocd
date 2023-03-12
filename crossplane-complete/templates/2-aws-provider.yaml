@@ -4,7 +4,7 @@ kind: ControllerConfig
 metadata:
   name: aws-config
   annotations:
-    argocd.argoproj.io/sync-wave: "20"   
+    argocd.argoproj.io/sync-wave: "10"   
     eks.amazonaws.com/role-arn: arn:aws:iam::937351930975:role/EKS-Crossplane-ServiceAccount-Role
 spec:
   podSecurityContext:
@@ -16,10 +16,10 @@ kind: Provider
 metadata:
   name: crossplane-provider-aws
   annotations:
-    argocd.argoproj.io/sync-wave: "30"   
+    argocd.argoproj.io/sync-wave: "20"   
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 spec:
-  package: "public.ecr.aws/awsvijisarathy/crossplane-provider-aws:v0.27.0"  
+  package: 937351930975.dkr.ecr.us-east-1.amazonaws.com/crossplane-aws-provider:v0.32.0
   controllerConfigRef:
     name: aws-config    
     
@@ -27,11 +27,11 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: after-provider
+  generateName: after-aws-provider
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "40"
+    argocd.argoproj.io/sync-wave: "30"
 spec:
   template:
     spec:

@@ -1,0 +1,43 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: k8s-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "110"   
+spec:
+  podSecurityContext:
+    fsGroup: 2000
+  args:
+  - '--debug'
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-kubernetes
+  annotations:
+    argocd.argoproj.io/sync-wave: "120"   
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true   
+spec:
+  package: 937351930975.dkr.ecr.us-east-1.amazonaws.com/crossplane-k8s-provider:v0.4.1
+  controllerConfigRef:
+    name: k8s-config
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: after-k8s-provider
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "130"
+spec:
+  template:
+    spec:
+      containers:
+        - name: page-down
+          image: alpine:latest
+          command: ["sleep", "10"]
+      restartPolicy: Never

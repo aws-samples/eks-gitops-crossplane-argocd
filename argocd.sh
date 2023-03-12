@@ -20,7 +20,7 @@ kubectl -n argocd patch svc argocd-server -p '{"spec": {"type": "LoadBalancer"}}
 # Following this, it is best to delete the 'argocd-initial-admin-secret' Secret
 #
 kubectl -n argocd get secret argocd-initial-admin-secret --template={{.data.password}} | base64 -D; echo
-argocd login ARGOCD_LOAD_BALANCER_DNS_NAME
+argocd login argocd.test.sarathy.io
 argocd account update-password
 kubectl -n argocd delete secret argocd-initial-admin-secret
 

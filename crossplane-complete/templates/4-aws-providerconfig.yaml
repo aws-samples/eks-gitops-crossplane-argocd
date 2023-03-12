@@ -1,0 +1,33 @@
+# ---
+# apiVersion: aws.crossplane.io/v1beta1
+# kind: ProviderConfig
+# metadata:
+#   name: default
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "50"    
+#     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+# spec:
+#   credentials:
+#     source: Secret
+#     secretRef:
+#       namespace: crossplane-system
+#       name: aws-credentials
+#       key: credentials
+
+---
+apiVersion: aws.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  #
+  # In order to authenticate with the AWS API, the provider controllers need to have access to credentials. It could be an IAM User or an IAM Role 
+  # Note that every Crossplane managed resource has a 'providerConfig' field which allows us to specify a separate ProviderConfig per Managed Resource.
+  # This allows us to use IAM credentials that are limited in scope to perform the operations related to only that managed resource.
+  # If 'providerConfigRef' is not specified for a Managed Resource, Crossplane will attempt to use a ProviderConfig named 'default'
+  #
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "210"    
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  credentials:
+    source: InjectedIdentity

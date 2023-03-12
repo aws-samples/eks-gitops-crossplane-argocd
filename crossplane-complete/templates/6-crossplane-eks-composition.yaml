@@ -3,11 +3,11 @@ kind: Configuration
 metadata:
   name: crossplane-eks-composition
   annotations:
-    argocd.argoproj.io/sync-wave: "100"   
+    argocd.argoproj.io/sync-wave: "410"   
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   ignoreCrossplaneConstraints: false
-  package: public.ecr.aws/awsvijisarathy/crossplane-eks-composition:9.0.0
+  package: 937351930975.dkr.ecr.us-east-1.amazonaws.com/crossplane-eks-composition:15.6.0  
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 0
@@ -21,7 +21,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "200"
+    argocd.argoproj.io/sync-wave: "420"
 spec:
   template:
     spec:
