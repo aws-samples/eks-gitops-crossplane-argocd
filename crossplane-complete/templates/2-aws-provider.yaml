@@ -1,0 +1,42 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: aws-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"   
+    eks.amazonaws.com/role-arn: arn:aws:iam::937351930975:role/EKS-Crossplane-ServiceAccount-Role
+spec:
+  podSecurityContext:
+    fsGroup: 2000
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: crossplane-provider-aws
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"   
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+spec:
+  package: 937351930975.dkr.ecr.us-east-1.amazonaws.com/crossplane-aws-provider:v0.32.0
+  controllerConfigRef:
+    name: aws-config    
+    
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: after-aws-provider
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  template:
+    spec:
+      containers:
+        - name: page-down
+          image: alpine:latest
+          command: ["sleep", "10"]
+      restartPolicy: Never
