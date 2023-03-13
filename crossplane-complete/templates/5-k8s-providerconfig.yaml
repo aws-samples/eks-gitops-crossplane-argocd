@@ -1,0 +1,30 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: provider-kubernetes-admin-binding
+  annotations:
+    argocd.argoproj.io/sync-wave: "310"    
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: provider-kubernetes-f8c78575e3e8
+    namespace: crossplane-system
+    
+
+---
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: k8s-providerconfig
+  annotations:
+    argocd.argoproj.io/sync-wave: "320"    
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
+spec:
+  credentials:
+    source: InjectedIdentity
+
