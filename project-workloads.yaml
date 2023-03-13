@@ -23,10 +23,10 @@ spec:
     server: https://kubernetes.default.svc  
   - namespace: eks
     server: https://kubernetes.default.svc      
-  - namespace: nodejs
-    server: https://96CAA995B29E9402BA9702AE0921C791.gr7.us-west-2.eks.amazonaws.com
-  - namespace: monitoring
-    server: https://96CAA995B29E9402BA9702AE0921C791.gr7.us-west-2.eks.amazonaws.com
+  # - namespace: nodejs
+  #   server: https://96CAA995B29E9402BA9702AE0921C791.gr7.us-west-2.eks.amazonaws.com
+  # - namespace: monitoring
+  #   server: https://96CAA995B29E9402BA9702AE0921C791.gr7.us-west-2.eks.amazonaws.com
   #
   # Deny all cluster-scoped resources from being created, except for the ones listed
   #
@@ -50,13 +50,15 @@ spec:
   - group: 'pkg.crossplane.io'
     kind: ControllerConfig            
   - group: 'aws.crossplane.io'
-    kind: ProviderConfig     
-  - group: 'eks.sarathy.io'
-    kind: EKSCluster      
+    kind: ProviderConfig    
+  - group: 'kubernetes.crossplane.io'
+    kind: ProviderConfig           
   - group: 'eks.aws.crossplane.io'
     kind: NodeGroup
   - group: 'eks.aws.crossplane.io'
     kind: Cluster    
+  - group: 'eks.sarathy.io'
+    kind: EKSCluster      
   #
   # Allow all namespace-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   #
